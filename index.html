@@ -2,112 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SLA Calculator | SLAlytics</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SLAlytics Dashboard</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    .form-group {
-      margin-bottom: 1rem;
-    }
-    label {
-      display: block;
-      font-weight: bold;
-    }
-    input, select {
-      width: 100%;
-      padding: 0.5rem;
-      margin-top: 0.25rem;
-      font-size: 1rem;
-    }
-    .result-box {
-      background: #f2f2f2;
-      padding: 1rem;
-      margin-top: 2rem;
-      border-radius: 6px;
-    }
-  </style>
 </head>
 <body>
   <header>
-    <h1>SLA Calculator</h1>
+    <h1>SLAlytics Dashboard</h1>
     <nav>
       <a href="index.html">Home</a>
+      <a href="sla-calculator.html">SLA Calculator</a>
+      <a href="changelog.html">Changelog</a>
     </nav>
   </header>
 
   <main>
     <section class="tile">
-      <form id="slaForm">
-        <div class="form-group">
-          <label for="uptime">Uptime target (%)</label>
-          <input type="number" id="uptime" value="99.9" min="90" max="100" step="0.001" required />
-        </div>
+      <h2>SLA Calculator</h2>
+      <p>Estimate allowed downtime using uptime %, over days, months, or years.</p>
+      <a href="sla-calculator.html">Open Calculator →</a>
+    </section>
 
-        <div class="form-group">
-          <label for="periodValue">Period</label>
-          <input type="number" id="periodValue" value="1" min="1" max="100" required />
-        </div>
+    <section class="tile">
+      <h2>IP Tools (Coming Soon)</h2>
+      <p>Perform diagnostics and IP lookups from mobile or desktop.</p>
+    </section>
 
-        <div class="form-group">
-          <label for="periodUnit">Unit</label>
-          <select id="periodUnit">
-            <option value="days">Days</option>
-            <option value="months" selected>Months</option>
-            <option value="years">Years</option>
-          </select>
-        </div>
+    <section class="tile">
+      <h2>Passphrase Stats (Coming Soon)</h2>
+      <p>View secure password generation analytics and entropy metrics.</p>
+    </section>
 
-        <button type="submit">Calculate SLA</button>
-      </form>
-
-      <div id="results" class="result-box" style="display: none;">
-        <h2>Results</h2>
-        <p><strong>Target Uptime:</strong> <span id="uptimeDisplay"></span>%</p>
-        <p><strong>Period Duration:</strong> <span id="periodDisplay"></span></p>
-        <p><strong>Allowed Downtime:</strong> <span id="allowedDowntime"></span></p>
-        <p><strong>Total Hours:</strong> <span id="totalHours"></span></p>
-      </div>
+    <section class="tile">
+      <h2>Changelog</h2>
+      <p>See what's new in SLAlytics versions and platform tools.</p>
+      <a href="changelog.html">View Changelog →</a>
     </section>
   </main>
 
   <footer>
     <p>© 2025 SLAlytics</p>
   </footer>
-
-  <script>
-    document.getElementById('slaForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const uptime = parseFloat(document.getElementById('uptime').value);
-      const periodValue = parseInt(document.getElementById('periodValue').value);
-      const periodUnit = document.getElementById('periodUnit').value;
-
-      let totalDays;
-      switch (periodUnit) {
-        case 'days':
-          totalDays = periodValue;
-          break;
-        case 'months':
-          totalDays = periodValue * 30.4375; // average month length
-          break;
-        case 'years':
-          totalDays = periodValue * 365.25; // average year length
-          break;
-      }
-
-      const totalMinutes = totalDays * 24 * 60;
-      const allowedDowntimeMin = totalMinutes * ((100 - uptime) / 100);
-
-      const hours = Math.floor(allowedDowntimeMin / 60);
-      const minutes = Math.round(allowedDowntimeMin % 60);
-
-      document.getElementById('uptimeDisplay').textContent = uptime.toFixed(3);
-      document.getElementById('periodDisplay').textContent = `${periodValue} ${periodUnit}`;
-      document.getElementById('allowedDowntime').textContent = `${hours}h ${minutes}m`;
-      document.getElementById('totalHours').textContent = (totalDays * 24).toFixed(1);
-
-      document.getElementById('results').style.display = 'block';
-    });
-  </script>
 </body>
 </html>
