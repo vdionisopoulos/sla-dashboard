@@ -13,7 +13,7 @@
       display: block;
       font-weight: bold;
     }
-    input {
+    input, select {
       width: 100%;
       padding: 0.5rem;
       margin-top: 0.25rem;
@@ -44,8 +44,17 @@
         </div>
 
         <div class="form-group">
-          <label for="days">Period (days)</label>
-          <input type="number" id="days" value="30" min="1" max="366" required />
+          <label for="periodValue">Period</label>
+          <input type="number" id="periodValue" value="1" min="1" max="100" required />
+        </div>
+
+        <div class="form-group">
+          <label for="periodUnit">Unit</label>
+          <select id="periodUnit">
+            <option value="days">Days</option>
+            <option value="months" selected>Months</option>
+            <option value="years">Years</option>
+          </select>
         </div>
 
         <button type="submit">Calculate SLA</button>
@@ -54,8 +63,9 @@
       <div id="results" class="result-box" style="display: none;">
         <h2>Results</h2>
         <p><strong>Target Uptime:</strong> <span id="uptimeDisplay"></span>%</p>
+        <p><strong>Period Duration:</strong> <span id="periodDisplay"></span></p>
         <p><strong>Allowed Downtime:</strong> <span id="allowedDowntime"></span></p>
-        <p><strong>Total Hours in Period:</strong> <span id="totalHours"></span> hours</p>
+        <p><strong>Total Hours:</strong> <span id="totalHours"></span></p>
       </div>
     </section>
   </main>
@@ -69,16 +79,32 @@
       e.preventDefault();
 
       const uptime = parseFloat(document.getElementById('uptime').value);
-      const days = parseInt(document.getElementById('days').value);
-      const totalMinutes = days * 24 * 60;
+      const periodValue = parseInt(document.getElementById('periodValue').value);
+      const periodUnit = document.getElementById('periodUnit').value;
+
+      let totalDays;
+      switch (periodUnit) {
+        case 'days':
+          totalDays = periodValue;
+          break;
+        case 'months':
+          totalDays = periodValue * 30.4375; // average month length
+          break;
+        case 'years':
+          totalDays = periodValue * 365.25; // average year length
+          break;
+      }
+
+      const totalMinutes = totalDays * 24 * 60;
       const allowedDowntimeMin = totalMinutes * ((100 - uptime) / 100);
 
       const hours = Math.floor(allowedDowntimeMin / 60);
       const minutes = Math.round(allowedDowntimeMin % 60);
 
       document.getElementById('uptimeDisplay').textContent = uptime.toFixed(3);
+      document.getElementById('periodDisplay').textContent = `${periodValue} ${periodUnit}`;
       document.getElementById('allowedDowntime').textContent = `${hours}h ${minutes}m`;
-      document.getElementById('totalHours').textContent = (days * 24).toFixed(0);
+      document.getElementById('totalHours').textContent = (totalDays * 24).toFixed(1);
 
       document.getElementById('results').style.display = 'block';
     });
