@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SLA Calculator | SLAlytics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.25rem;
+      font-size: 1rem;
+    }
+    .result-box {
+      background: #f2f2f2;
+      padding: 1rem;
+      margin-top: 2rem;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SLA Calculator</h1>
+    <nav>
+      <a href="index.html">Home</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="tile">
+      <form id="slaForm">
+        <div class="form-group">
+          <label for="uptime">Uptime target (%)</label>
+          <input type="number" id="uptime" value="99.9" min="90" max="100" step="0.001" required />
+        </div>
+
+        <div class="form-group">
+          <label for="days">Period (days)</label>
+          <input type="number" id="days" value="30" min="1" max="366" required />
+        </div>
+
+        <button type="submit">Calculate SLA</button>
+      </form>
+
+      <div id="results" class="result-box" style="display: none;">
+        <h2>Results</h2>
+        <p><strong>Target Uptime:</strong> <span id="uptimeDisplay"></span>%</p>
+        <p><strong>Allowed Downtime:</strong> <span id="allowedDowntime"></span></p>
+        <p><strong>Total Hours in Period:</strong> <span id="totalHours"></span> hours</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 SLAlytics</p>
+  </footer>
+
+  <script>
+    document.getElementById('slaForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const uptime = parseFloat(document.getElementById('uptime').value);
+      const days = parseInt(document.getElementById('days').value);
+      const totalMinutes = days * 24 * 60;
+      const allowedDowntimeMin = totalMinutes * ((100 - uptime) / 100);
+
+      const hours = Math.floor(allowedDowntimeMin / 60);
+      const minutes = Math.round(allowedDowntimeMin % 60);
+
+      document.getElementById('uptimeDisplay').textContent = uptime.toFixed(3);
+      document.getElementById('allowedDowntime').textContent = `${hours}h ${minutes}m`;
+      document.getElementById('totalHours').textContent = (days * 24).toFixed(0);
+
+      document.getElementById('results').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
