@@ -17,9 +17,34 @@
 
   <main>
     <section class="tile">
-      <h2>SLA Submissions</h2>
-      <p>Track and manage SLA entries submitted through the app.</p>
-    </section>
+  <h2>SLA Submission Breakdown</h2>
+  <canvas id="slaChart" width="300" height="300"></canvas>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('slaChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Critical', 'High', 'Medium', 'Low'],
+      datasets: [{
+        label: 'SLAs by Priority',
+        data: [12, 19, 7, 3], // dummy data for now
+        backgroundColor: ['#d32f2f', '#fbc02d', '#1976d2', '#388e3c'],
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'bottom',
+        },
+      }
+    }
+  });
+</script>
+
 
     <section class="tile">
       <h2>IP Tools</h2>
