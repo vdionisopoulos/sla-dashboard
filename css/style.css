@@ -1,0 +1,150 @@
+/* Reset and Base */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  font: normal 14px/1.6em "Segoe UI", sans-serif;
+  color: #333;
+  background: #fff;
+}
+
+h1, h2, h3 {
+  color: darkblue;
+  margin-top: 0;
+}
+
+a {
+  color: blue;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #333;
+}
+
+/* Layout Wrappers */
+#page {
+  background: #fff;
+}
+
+#header-inner,
+.feature-inner,
+#content-inner,
+#footerblurb-inner,
+#footer-inner {
+  margin: auto;
+  width: 970px;
+}
+
+/* Logo */
+#logo h1 a {
+  color: darkblue;
+  text-decoration: none;
+}
+
+#logo h1 span {
+  color: #aaa;
+}
+
+/* Top Navigation */
+#top-nav {
+  float: right;
+  height: 37px;
+}
+
+#top-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+#top-nav ul li {
+  margin-left: 8px;
+}
+
+#top-nav ul li a {
+  display: block;
+  padding: 8px 16px;
+}
+
+/* Feature Section */
+.feature {
+  background: blue;
+  color: white;
+  padding: 18px;
+}
+
+.feature-inner h1 {
+  font-size: 32px;
+  color: #d3d3f9;
+}
+
+/* Content Layout */
+#content {
+  background: #fff;
+}
+
+#content #contentbar {
+  float: right;
+  width: 740px;
+  padding: 0 15px;
+}
+
+#content #sidebar {
+  float: left;
+  width: 200px;
+  background: #f7f7f7;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* Sidebar Widgets */
+.widget h3 {
+  margin-bottom: 0.5rem;
+}
+
+.widget ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.widget ul li {
+  padding: 4px 0;
+}
+
+.widget ul li a {
+  padding-left: 8px;
+  display: block;
+}
+
+/* Footer Blurb */
+#footerblurb {
+  background: #eaeaff;
+  color: blue;
+  padding: 24px 0;
+}
+
+#footerblurb .column {
+  float: left;
+  width: 30%;
+  padding: 0 1%;
+  box-sizing: border-box;
+}
+
+/* Footer */
+#footer {
+  background: #f9f9f9;
+  padding: 12px 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Clearfix */
+.clr {
+  clear: both;
+}

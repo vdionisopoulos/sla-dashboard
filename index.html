@@ -2,40 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SLAlytics Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/main.js" defer></script>
 </head>
 <body>
-  <header>
-    <h1>SLAlytics Dashboard</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="changelog.html">Changelog</a>
-    </nav>
-  </header>
+  <div id="page">
+    <div data-include="components/header.html"></div>
 
-  <main>
-    <section class="tile">
-      <h2>SLA Tools</h2>
-      <p>Access all SLA utilities: Calculator, Comparison, and Reverse.</p>
-      <a href="sla-index.html">Go to SLA Tools →</a>
-    </section>
+    <div class="feature">
+      <div class="feature-inner">
+        <h1>Your Uptime Analytics Toolkit</h1>
+      </div>
+    </div>
 
-    <section class="tile">
-      <h2>IP Tools (Coming Soon)</h2>
-      <p>Perform diagnostics and IP lookups from mobile or desktop.</p>
-    </section>
+    <div id="content">
+      <div id="content-inner">
+        <div data-include="components/sidebar.html"></div>
 
-    <section class="tile">
-      <h2>Password Tools</h2>
-      <p>Access secure password generation, passphrase creation, and strength checking.</p>
-      <a href="pass-index.html">Go to Password Tools →</a>
-    </section>
-  </main>
+        <main id="contentbar">
+          <section class="article">
+            <h2>Welcome to SLAlytics</h2>
+            <p>Monitor and analyze your Service Level Agreements with precision. Start with the tools on the left, or explore the changelog to see what’s new.</p>
+          </section>
+        </main>
 
-  <footer>
-    <p>© 2025 SLAlytics</p>
-  </footer>
+        <div class="clr"></div>
+      </div>
+    </div>
+
+    <div data-include="components/footer.html"></div>
+  </div>
 </body>
 </html>
