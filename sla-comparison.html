@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SLA Comparison | SLAlytics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  </head>
+<body>
+  <header>
+    <h1>SLA Comparison</h1>
+    <nav><a href="sla-index.html">Back to SLA Tools</a></nav>
+  </header>
+  <main>
+    <section class="tile">
+      <form id="compareForm">
+        <div id="warning" style="display: none;">⚠️ SLA values must be between 90 and 99.999</div>
+        <div class="form-row">
+          <div class="form-group"><label for="sla1">SLA 1 (%)</label><input type="number" id="sla1" value="99.9" step="0.001" required /></div>
+          <div class="form-group"><label for="sla2">SLA 2 (%)</label><input type="number" id="sla2" value="99.95" step="0.001" required /></div>
+          <div class="form-group"><label for="sla3">SLA 3 (%)</label><input type="number" id="sla3" value="99.99" step="0.001" required /></div>
+          <div class="form-group"><label for="sla4">SLA 4 (%)</label><input type="number" id="sla4" value="99.999" step="0.001" required /></div>
+          <div class="form-group"><label for="sla5">SLA 5 (%)</label><input type="number" id="sla5" value="99.999" step="0.001" required /></div>
+        </div>
+      </form>
+
+      <div class="result-box" id="results" style="display: none;">
+        <h2>Comparison Table</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Period</th>
+              <th>🥇 SLA 1</th>
+              <th>🥈 SLA 2</th>
+              <th>🥉 SLA 3</th>
+              <th>🏅 SLA 4</th>
+              <th>🎖 SLA 5</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Day</td><td id="day1"></td><td id="day2"></td><td id="day3"></td><td id="day4"></td><td id="day5"></td></tr>
+            <tr><td>Month</td><td id="month1"></td><td id="month2"></td><td id="month3"></td><td id="month4"></td><td id="month5"></td></tr>
+            <tr><td>Quarter</td><td id="quarter1"></td><td id="quarter2"></td><td id="quarter3"></td><td id="quarter4"></td><td id="quarter5"></td></tr>
+            <tr><td>Year</td><td id="year1"></td><td id="year2"></td><td id="year3"></td><td id="year4"></td><td id="year5"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <footer><p>© 2025 SLAlytics</p></footer>
+
+  <script>
+    const inputs = [
+      document.getElementById('sla1'),
+      document.getElementById('sla2'),
+      document.getElementById('sla3'),
+      document.getElementById('sla4'),
+      document.getElementById('sla5')
+    ];
+    const warningEl = document.getElementById('warning');
+    const resultsBox = document.getElementById('results');
+
+    const daysMap = {
+      day: 1,
+      month: 30.4375,
+      quarter: 91.3125,
+      year: 365.25
+    };
+
+    function formatDowntime(uptime, days) {
+      if (!uptime || uptime >= 100 || uptime < 90) return '–';
+      const minutes = days * 24 * 60 * ((100 - uptime) / 100);
+      const h = Math.floor(minutes / 60);
+      const m = Math.round(minutes % 60);
+      return { value: minutes, label: `${h}h ${m}m` };
+    }
+
+    function updateComparison() {
+      const slaValues = inputs.map(input => parseFloat(input.value));
+      const isValid = slaValues.every(v => !isNaN(v) && v < 100 && v >= 90);
+
+      if (!isValid) {
+        warningEl.style.display = 'block';
+        resultsBox.style.display = 'none';
+        return;
+      }
+
+      warningEl.style.display = 'none';
+      resultsBox.style.display = 'block';
+
+      for (const period in daysMap) {
+        const days = daysMap[period];
+        const downtimeData = slaValues.map(uptime => formatDowntime(uptime, days));
+        const minVal = Math.min(...downtimeData.map(d => d.value));
+
+        downtimeData.forEach((downtime, i) => {
+          const cell = document.getElementById(`${period}${i + 1}`);
+          cell.textContent = downtime.label;
+          cell.classList.remove('highlight-best');
+          if (downtime.value === minVal) {
+            cell.classList.add('highlight-best');
+          }
+        });
+      }
+    }
+
+    inputs.forEach(input => input.addEventListener('input', updateComparison));
+    document.addEventListener('DOMContentLoaded', updateComparison);
+  </script>
+</body>
+</html>

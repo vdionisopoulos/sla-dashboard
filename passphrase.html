@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Passphrase Generator | SLAlytics</title>
+  <link rel="stylesheet" href="style.css" />
+  </head>
+<body>
+  <header>
+    <h1>Passphrase Generator</h1>
+    <nav>
+      <a href="index.html">Dashboard</a>
+      <a href="pass-index.html">Back to Password Tools</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="tile">
+      <form id="phraseForm">
+        <div class="form-group">
+          <label for="wordCount">Number of Words</label>
+          <input type="number" id="wordCount" value="4" min="2" max="12" />
+        </div>
+
+        <div class="form-group">
+          <label for="delimiter">Delimiter</label>
+          <select id="delimiter">
+            <option value="-">Hyphen (-)</option>
+            <option value="_">Underscore (_)</option>
+            <option value=" ">Space ( )</option>
+            <option value=".">Dot (.)</option>
+          </select>
+        </div>
+
+        <button type="submit">Generate Passphrase</button>
+      </form>
+
+      <div id="result" class="result-box" style="display: none;">
+        <p><strong>Generated Passphrase:</strong></p>
+        <p id="output"></p>
+        <button id="copyBtn">Copy</button>
+        <p id="entropy"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer><p>© 2025 SLAlytics</p></footer>
+
+  <script>
+    let wordList = [];
+
+    async function loadWordlist() {
+      try {
+        const res = await fetch('diceware.json');
+        wordList = await res.json();
+      } catch (err) {
+        alert("Failed to load wordlist.");
+      }
+    }
+
+    const form = document.getElementById('phraseForm');
+    const output = document.getElementById('output');
+    const result = document.getElementById('result');
+    const entropyText = document.getElementById('entropy');
+    const copyBtn = document.getElementById('copyBtn');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const count = +document.getElementById('wordCount').value;
+      const delimiter = document.getElementById('delimiter').value;
+
+      if (!wordList.length) {
+        output.textContent = 'Wordlist not loaded.';
+        result.style.display = 'block';
+        return;
+      }
+
+      const passphrase = Array.from({ length: count }, () => {
+        const idx = Math.floor(Math.random() * wordList.length);
+        return wordList[idx];
+      }).join(delimiter);
+
+      output.textContent = passphrase;
+      result.style.display = 'block';
+
+      const entropy = count * Math.log2(wordList.length);
+      entropyText.textContent = `Estimated Entropy: ${entropy.toFixed(2)} bits`;
+    });
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(output.textContent).then(() => {
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => (copyBtn.textContent = 'Copy'), 1500);
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', loadWordlist);
+  </script>
+</body>
+</html>
