@@ -12,28 +12,28 @@
 <body>
   <div class="wrapper">
     <!-- Sidebar -->
-    <nav id="sidebar" class="sidebar js-sidebar">
+        <nav id="sidebar" class="sidebar js-sidebar">
       <div class="sidebar-content js-simplebar">
         <a class="sidebar-brand" href="index.html">
           <span class="align-middle">SLAlytics</span>
         </a>
 
         <ul class="sidebar-nav">
-          <li class="sidebar-item">
+          <li class="sidebar-item active">
             <a class="sidebar-link" href="index.html">
               <i data-feather="home" class="align-middle"></i> <span class="align-middle">Dashboard</span>
             </a>
           </li>
-          <li class="sidebar-item active">
-            <a data-bs-target="#slaTools" data-bs-toggle="collapse" class="sidebar-link d-flex justify-content-between align-items-center" aria-expanded="true">
+          <li class="sidebar-item">
+            <a data-bs-target="#slaTools" data-bs-toggle="collapse" class="sidebar-link collapsed d-flex justify-content-between align-items-center" aria-expanded="false">
               <span>
                 <i data-feather="bar-chart-2" class="align-middle me-2"></i>
                 <span class="align-middle">SLA Tools</span>
               </span>
-              <i data-feather="chevron-up" class="collapse-arrow"></i>
+              <i data-feather="chevron-down" class="collapse-arrow"></i>
             </a>
-            <ul id="slaTools" class="sidebar-dropdown list-unstyled collapse show ps-4" data-bs-parent="#sidebar">
-              <li class="sidebar-item active">
+            <ul id="slaTools" class="sidebar-dropdown list-unstyled collapse ps-4" data-bs-parent="#sidebar">
+              <li class="sidebar-item">
                 <a class="sidebar-link d-flex align-items-center" href="sla-calculator.html">
                   <span class="me-2">→</span> SLA Calculator
                 </a>
@@ -49,6 +49,39 @@
                 </a>
               </li>
             </ul>
+          </li>
+
+          <li class="sidebar-item">
+          <a data-bs-target="#passTools" data-bs-toggle="collapse" class="sidebar-link collapsed d-flex justify-content-between align-items-center" aria-expanded="false">
+            <span>
+              <i data-feather="lock" class="align-middle me-2"></i>
+              <span class="align-middle">Password Tools</span>
+            </span>
+            <i data-feather="chevron-down" class="collapse-arrow"></i>
+          </a>
+          <ul id="passTools" class="sidebar-dropdown list-unstyled collapse ps-4" data-bs-parent="#sidebar">
+            <li class="sidebar-item">
+              <a class="sidebar-link d-flex align-items-center" href="password-generator.html">
+                <span class="me-2">→</span> Password Generator
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link d-flex align-items-center" href="passphrase.html">
+                <span class="me-2">→</span> Passphrase Generator
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link d-flex align-items-center" href="password-checker.html">
+                <span class="me-2">→</span> Strength Checker
+              </a>
+            </li>
+          </ul>
+        </li>
+
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="changelog.html">
+              <i data-feather="file-text" class="align-middle"></i> <span class="align-middle">Changelog</span>
+            </a>
           </li>
         </ul>
       </div>
@@ -76,15 +109,18 @@
 
           <div class="card">
             <div class="card-body">
-              <form id="slaForm">
-                <div class="mb-3">
-                  <label for="uptime" class="form-label">
-                    Uptime target (%) 
-                    <span class="ms-1" title="Typical values: 99.9, 99.99, 99.999">📌</span>
-                  </label>
-                  <input type="number" class="form-control" id="uptime" value="99.9" min="90" max="100" step="0.001" required />
+              <form id="slaForm" class="d-flex justify-content-center">
+                <div style="min-width: 360px; max-width: 600px; width: 100%;">
+                  <div class="mb-3">
+                    <label for="uptime" class="form-label">
+                      Uptime target (%)
+                      <span class="ms-1" title="Typical values: 99.9, 99.99, 99.999">📌</span>
+                    </label>
+                    <input type="number" class="form-control" id="uptime" value="99.9" min="90" max="100" step="0.001" required />
+                  </div>
                 </div>
               </form>
+
 
               <div id="results" class="d-flex justify-content-center mt-4" style="display: none;">
                 <div style="min-width: 360px; max-width: 600px; width: 100%;">
