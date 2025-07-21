@@ -1,68 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SLAlytics Dashboard</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/style-merged.css" />
-  </head>
-<body>
 
-  <div class="container-fluid">
-    <div class="row">
-      <!-- Sidebar -->
-      <nav class="col-md-3 col-lg-2 sidebar">
-        <h2 class="fs-4">SLAlytics</h2>
-        <a href="index.html">🏠 Dashboard</a>
-        <a href="sla-index.html">📊 SLA Tools</a>
-        <a href="pass-index.html">🔐 Password Tools</a>
-        <a href="changelog.html">📝 Changelog</a>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>SLAlytics Dashboard</title>
+
+  <link href="css/app.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar" class="sidebar js-sidebar">
+      <div class="sidebar-content js-simplebar">
+        <a class="sidebar-brand" href="index.html">
+          <span class="align-middle">SLAlytics</span>
+        </a>
+
+        <ul class="sidebar-nav">
+          <li class="sidebar-item active">
+            <a class="sidebar-link" href="index.html">
+              <i class="align-middle" data-feather="home"></i> <span class="align-middle">Dashboard</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="sla-index.html">
+              <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">SLA Tools</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="pass-index.html">
+              <i class="align-middle" data-feather="lock"></i> <span class="align-middle">Password Tools</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="changelog.html">
+              <i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Changelog</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="main">
+      <!-- Top Navbar -->
+      <nav class="navbar navbar-expand navbar-light navbar-bg">
+        <a class="sidebar-toggle js-sidebar-toggle">
+          <i class="hamburger align-self-center"></i>
+        </a>
+        <div class="navbar-collapse collapse">
+          <ul class="navbar-nav navbar-align">
+            <li class="nav-item">
+              <span class="nav-link text-dark fw-bold">Welcome to SLAlytics</span>
+            </li>
+          </ul>
+        </div>
       </nav>
 
-      <!-- Main content -->
-      <main class="col-md-9 col-lg-10 py-5">
-        <div class="container">
-          <h1 class="mb-4">Dashboard</h1>
-          <div class="row g-4">
-            <div class="col-md-6 col-lg-4">
-              <div class="card h-100 shadow-sm">
+      <!-- Main Content -->
+      <main class="content">
+        <div class="container-fluid p-0">
+          <h1 class="h3 mb-4">Dashboard</h1>
+
+          <div class="row">
+            <div class="col-md-6 col-xl-4">
+              <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">SLA Tools</h5>
-                  <p class="card-text">Access all SLA utilities: Calculator, Comparison, and Reverse.</p>
-                  <a href="sla-index.html" class="btn btn-primary">Go to SLA Tools →</a>
+                  <p>Calculator, Comparison, Reverse SLA.</p>
+                  <a href="sla-index.html" class="btn btn-primary">Open →</a>
                 </div>
               </div>
             </div>
 
-            <div class="col-md-6 col-lg-4">
-              <div class="card h-100 shadow-sm">
+            <div class="col-md-6 col-xl-4">
+              <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">IP Tools (Coming Soon)</h5>
-                  <p class="card-text">Perform diagnostics and IP lookups from mobile or desktop.</p>
+                  <h5 class="card-title">IP Tools</h5>
+                  <p>Coming Soon</p>
                 </div>
               </div>
             </div>
 
-            <div class="col-md-6 col-lg-4">
-              <div class="card h-100 shadow-sm">
+            <div class="col-md-6 col-xl-4">
+              <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">Password Tools</h5>
-                  <p class="card-text">Access secure password generation, passphrase creation, and strength checking.</p>
-                  <a href="pass-index.html" class="btn btn-primary">Go to Password Tools →</a>
+                  <p>Generate, check, and analyze passwords.</p>
+                  <a href="pass-index.html" class="btn btn-primary">Open →</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container-fluid">
+          <div class="row text-muted">
+            <div class="col-6 text-start">
+              <p class="mb-0">
+                © 2025 <strong>SLAlytics</strong>
+              </p>
+            </div>
+            <div class="col-6 text-end">
+              <a class="text-muted" href="changelog.html">Changelog</a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   </div>
 
-  <footer class="bg-light text-center py-3 mt-auto">
-    <p class="mb-0">© 2025 SLAlytics</p>
-  </footer>
-
-  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/app.js"></script>
 </body>
+
 </html>
