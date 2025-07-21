@@ -86,23 +86,44 @@
                 </div>
               </form>
 
-              <div id="results" style="display: none;">
-                <h5>Allowed Downtime</h5>
-                <table class="table table-bordered mt-3">
-                  <thead class="table-light">
-                    <tr>
-                      <th>Period</th>
-                      <th>Downtime</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr><td>Per Day</td><td id="dayResult">–</td></tr>
-                    <tr><td>Per Month</td><td id="monthResult">–</td></tr>
-                    <tr><td>Per Quarter</td><td id="quarterResult">–</td></tr>
-                    <tr><td>Per Year</td><td id="yearResult">–</td></tr>
-                  </tbody>
-                </table>
+              <div id="results" class="d-flex justify-content-center mt-4" style="display: none;">
+                <div style="min-width: 360px; max-width: 600px; width: 100%;">
+                  <h5>Allowed Downtime</h5>
+                  <table class="table table-bordered text-center mt-3">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Period</th>
+                        <th>Total Downtime</th>
+                        <th>Avg per Day</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Per Day</td>
+                        <td id="dayResult">–</td>
+                        <td id="dayAvg">–</td>
+                      </tr>
+                      <tr>
+                        <td>Per Month</td>
+                        <td id="monthResult">–</td>
+                        <td id="monthAvg">–</td>
+                      </tr>
+                      <tr>
+                        <td>Per Quarter</td>
+                        <td id="quarterResult">–</td>
+                        <td id="quarterAvg">–</td>
+                      </tr>
+                      <tr>
+                        <td>Per Year</td>
+                        <td id="yearResult">–</td>
+                        <td id="yearAvg">–</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
+
+
             </div>
           </div>
         </div>
@@ -162,13 +183,21 @@
           return;
         }
 
-        document.getElementById('dayResult').textContent = calculateDowntime(uptime, 1);
-        document.getElementById('monthResult').textContent = calculateDowntime(uptime, 30.4375);
-        document.getElementById('quarterResult').textContent = calculateDowntime(uptime, 91.3125);
-        document.getElementById('yearResult').textContent = calculateDowntime(uptime, 365.25);
+        function setRow(days, totalId, avgId) {
+          const total = calculateDowntime(uptime, days);
+          const avg = calculateDowntime(uptime, 1); // average per day
+          document.getElementById(totalId).textContent = total;
+          document.getElementById(avgId).textContent = avg;
+        }
 
-        resultsBox.style.display = 'block';
+        setRow(1, 'dayResult', 'dayAvg');
+        setRow(30.4375, 'monthResult', 'monthAvg');
+        setRow(91.3125, 'quarterResult', 'quarterAvg');
+        setRow(365.25, 'yearResult', 'yearAvg');
+
+        resultsBox.style.display = 'flex';
       }
+
 
       uptimeInput.addEventListener('input', updateResults);
       updateResults();
