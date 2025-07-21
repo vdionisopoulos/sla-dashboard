@@ -4,38 +4,58 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SLAlytics Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header>
-    <h1>SLAlytics Dashboard</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="changelog.html">Changelog</a>
-    </nav>
+
+  <header class="bg-primary text-white py-3">
+    <div class="container">
+      <h1 class="mb-2">SLAlytics Dashboard</h1>
+      <nav>
+        <a href="index.html" class="text-white me-3 fw-bold">Home</a>
+        <a href="changelog.html" class="text-white fw-bold">Changelog</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section class="tile">
-      <h2>SLA Tools</h2>
-      <p>Access all SLA utilities: Calculator, Comparison, and Reverse.</p>
-      <a href="sla-index.html">Go to SLA Tools →</a>
-    </section>
+  <main class="container py-5">
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">SLA Tools</h5>
+            <p class="card-text">Access all SLA utilities: Calculator, Comparison, and Reverse.</p>
+            <a href="sla-index.html" class="btn btn-primary">Go to SLA Tools →</a>
+          </div>
+        </div>
+      </div>
 
-    <section class="tile">
-      <h2>IP Tools (Coming Soon)</h2>
-      <p>Perform diagnostics and IP lookups from mobile or desktop.</p>
-    </section>
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">IP Tools (Coming Soon)</h5>
+            <p class="card-text">Perform diagnostics and IP lookups from mobile or desktop.</p>
+          </div>
+        </div>
+      </div>
 
-    <section class="tile">
-      <h2>Password Tools</h2>
-      <p>Access secure password generation, passphrase creation, and strength checking.</p>
-      <a href="pass-index.html">Go to Password Tools →</a>
-    </section>
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Password Tools</h5>
+            <p class="card-text">Access secure password generation, passphrase creation, and strength checking.</p>
+            <a href="pass-index.html" class="btn btn-primary">Go to Password Tools →</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
-  <footer>
-    <p>© 2025 SLAlytics</p>
+  <footer class="bg-light text-center py-3">
+    <p class="mb-0">© 2025 SLAlytics</p>
   </footer>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
