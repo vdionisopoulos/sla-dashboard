@@ -53,10 +53,32 @@
           </li>
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="pass-index.html">
-              <i data-feather="lock" class="align-middle"></i> <span class="align-middle">Password Tools</span>
-            </a>
-          </li>
+          <a data-bs-target="#passTools" data-bs-toggle="collapse" class="sidebar-link collapsed d-flex justify-content-between align-items-center" aria-expanded="false">
+            <span>
+              <i data-feather="lock" class="align-middle me-2"></i>
+              <span class="align-middle">Password Tools</span>
+            </span>
+            <i data-feather="chevron-down" class="collapse-arrow"></i>
+          </a>
+          <ul id="passTools" class="sidebar-dropdown list-unstyled collapse ps-4" data-bs-parent="#sidebar">
+            <li class="sidebar-item">
+              <a class="sidebar-link d-flex align-items-center" href="password-generator.html">
+                <span class="me-2">→</span> Password Generator
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link d-flex align-items-center" href="passphrase.html">
+                <span class="me-2">→</span> Passphrase Generator
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link d-flex align-items-center" href="password-checker.html">
+                <span class="me-2">→</span> Strength Checker
+              </a>
+            </li>
+          </ul>
+        </li>
+
           <li class="sidebar-item">
             <a class="sidebar-link" href="changelog.html">
               <i data-feather="file-text" class="align-middle"></i> <span class="align-middle">Changelog</span>
