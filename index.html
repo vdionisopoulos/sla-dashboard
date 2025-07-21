@@ -26,9 +26,21 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="sla-index.html">
-              <i data-feather="bar-chart-2" class="align-middle"></i> <span class="align-middle">SLA Tools</span>
+            <a data-bs-target="#slaTools" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
+              <i data-feather="bar-chart-2" class="align-middle"></i>
+              <span class="align-middle">SLA Tools</span>
             </a>
+            <ul id="slaTools" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="sla-calculator.html">SLA Calculator</a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="sla-comparison.html">SLA Comparison</a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="sla-reverse.html">SLA Reverse (SLE)</a>
+              </li>
+            </ul>
           </li>
           <li class="sidebar-item">
             <a class="sidebar-link" href="pass-index.html">
