@@ -2,7 +2,7 @@
 
 🌐 A lightweight, mobile-friendly dashboard for the [SLAlytics](https://play.google.com/store/apps/details?id=com.example.slalytics) Android app, deployed using [Azure Static Web Apps](https://azure.microsoft.com/en-us/products/app-service/static/).
 
----
+--- 
 
 ## 📦 Features
 
