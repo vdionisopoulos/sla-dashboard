@@ -1,107 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <title>SLA Calculator | SLAlytics</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link href="css/app.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
 </head>
+
 <body>
-  <header>
-    <h1>SLA Calculator</h1>
-    <nav>
-      <a href="index.html">Home</a>
-    </nav>
-  </header>
+  <div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar" class="sidebar js-sidebar">
+      <div class="sidebar-content js-simplebar">
+        <a class="sidebar-brand" href="index.html">
+          <span class="align-middle">SLAlytics</span>
+        </a>
 
-  <main>
-    <section class="tile">
-      <form id="slaForm">
-        <div class="form-group">
-          <label for="uptime">
-            <span>Uptime target (%)</span>
-            <span class="tooltip" data-tooltip="Typical values: 99.9, 99.99, 99.999">
-              📌
-            </span>
-          </label>
-          <input
-            type="number"
-            id="uptime"
-            value="99.9"
-            min="90"
-            max="100"
-            step="0.001"
-            required
-          />
-        </div>
-      </form> 
-
-      <div id="results" class="result-box" style="display: none;">
-        <h2>Allowed Downtime</h2>
-        <table class="result-table">
-          <thead>
-            <tr>
-              <th>Period</th>
-              <th>Downtime</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Per Day</td>
-              <td id="dayResult">–</td>
-            </tr>
-            <tr>
-              <td>Per Month</td>
-              <td id="monthResult">–</td>
-            </tr>
-            <tr>
-              <td>Per Quarter</td>
-              <td id="quarterResult">–</td>
-            </tr>
-            <tr>
-              <td>Per Year</td>
-              <td id="yearResult">–</td>
-            </tr>
-          </tbody>
-        </table>
+        <ul class="sidebar-nav">
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="index.html">
+              <i data-feather="home" class="align-middle"></i> <span class="align-middle">Dashboard</span>
+            </a>
+          </li>
+          <li class="sidebar-item active">
+            <a data-bs-target="#slaTools" data-bs-toggle="collapse" class="sidebar-link d-flex justify-content-between align-items-center" aria-expanded="true">
+              <span>
+                <i data-feather="bar-chart-2" class="align-middle me-2"></i>
+                <span class="align-middle">SLA Tools</span>
+              </span>
+              <i data-feather="chevron-up" class="collapse-arrow"></i>
+            </a>
+            <ul id="slaTools" class="sidebar-dropdown list-unstyled collapse show ps-4" data-bs-parent="#sidebar">
+              <li class="sidebar-item active">
+                <a class="sidebar-link d-flex align-items-center" href="sla-calculator.html">
+                  <span class="me-2">→</span> SLA Calculator
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link d-flex align-items-center" href="sla-comparison.html">
+                  <span class="me-2">→</span> SLA Comparison
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link d-flex align-items-center" href="sla-reverse.html">
+                  <span class="me-2">→</span> SLA Reverse (SLE)
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
-    </section>
-  </main>
+    </nav>
 
-  <footer>
-    <p>© 2025 SLAlytics</p>
-  </footer>
+    <div class="main">
+      <!-- Top Navbar -->
+      <nav class="navbar navbar-expand navbar-light navbar-bg">
+        <a class="sidebar-toggle js-sidebar-toggle">
+          <i data-feather="menu" class="align-self-center"></i>
+        </a>
+        <div class="navbar-collapse collapse">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <span class="nav-link fw-semibold">SLA Calculator</span>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
+      <!-- Main Content -->
+      <main class="content">
+        <div class="container-fluid p-0">
+          <h1 class="h3 mb-4">Calculate Allowed Downtime</h1>
+
+          <div class="card">
+            <div class="card-body">
+              <form id="slaForm">
+                <div class="mb-3">
+                  <label for="uptime" class="form-label">
+                    Uptime target (%) 
+                    <span class="ms-1" title="Typical values: 99.9, 99.99, 99.999">📌</span>
+                  </label>
+                  <input type="number" class="form-control" id="uptime" value="99.9" min="90" max="100" step="0.001" required />
+                </div>
+              </form>
+
+              <div id="results" style="display: none;">
+                <h5>Allowed Downtime</h5>
+                <table class="table table-bordered mt-3">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Period</th>
+                      <th>Downtime</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Per Day</td><td id="dayResult">–</td></tr>
+                    <tr><td>Per Month</td><td id="monthResult">–</td></tr>
+                    <tr><td>Per Quarter</td><td id="quarterResult">–</td></tr>
+                    <tr><td>Per Year</td><td id="yearResult">–</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container-fluid">
+          <div class="row text-muted">
+            <div class="col-6 text-start">
+              <p class="mb-0">© 2025 <strong>SLAlytics</strong></p>
+            </div>
+            <div class="col-6 text-end">
+              <a class="text-muted" href="changelog.html">Changelog</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Feather Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+  <!-- AdminKit JS -->
+  <script src="js/app.js"></script>
+
+  <!-- SLA Calculator Script -->
   <script>
-    const uptimeInput = document.getElementById('uptime');
-    const resultsBox = document.getElementById('results');
+    document.addEventListener("DOMContentLoaded", function () {
+      feather.replace();
 
-    function calculateDowntime(uptime, days) {
-      const totalMinutes = days * 24 * 60;
-      const downtime = totalMinutes * ((100 - uptime) / 100);
-      const hours = Math.floor(downtime / 60);
-      const minutes = Math.round(downtime % 60);
-      return `${hours}h ${minutes}m`;
-    }
-
-    function updateResults() {
-      const uptime = parseFloat(uptimeInput.value);
-
-      if (!uptime || uptime < 90 || uptime > 100) {
-        resultsBox.style.display = 'none';
-        return;
+      const toggle = document.querySelector(".js-sidebar-toggle");
+      const wrapper = document.querySelector(".wrapper");
+      if (toggle && wrapper) {
+        toggle.addEventListener("click", function () {
+          wrapper.classList.toggle("toggled");
+        });
       }
 
-      document.getElementById('dayResult').textContent = calculateDowntime(uptime, 1);
-      document.getElementById('monthResult').textContent = calculateDowntime(uptime, 30.4375);
-      document.getElementById('quarterResult').textContent = calculateDowntime(uptime, 91.3125);
-      document.getElementById('yearResult').textContent = calculateDowntime(uptime, 365.25);
+      const uptimeInput = document.getElementById('uptime');
+      const resultsBox = document.getElementById('results');
 
-      resultsBox.style.display = 'block';
-    }
+      function calculateDowntime(uptime, days) {
+        const totalMinutes = days * 24 * 60;
+        const downtime = totalMinutes * ((100 - uptime) / 100);
+        const hours = Math.floor(downtime / 60);
+        const minutes = Math.round(downtime % 60);
+        return `${hours}h ${minutes}m`;
+      }
 
-    uptimeInput.addEventListener('input', updateResults);
-    document.addEventListener('DOMContentLoaded', updateResults);
+      function updateResults() {
+        const uptime = parseFloat(uptimeInput.value);
+
+        if (!uptime || uptime < 90 || uptime > 100) {
+          resultsBox.style.display = 'none';
+          return;
+        }
+
+        document.getElementById('dayResult').textContent = calculateDowntime(uptime, 1);
+        document.getElementById('monthResult').textContent = calculateDowntime(uptime, 30.4375);
+        document.getElementById('quarterResult').textContent = calculateDowntime(uptime, 91.3125);
+        document.getElementById('yearResult').textContent = calculateDowntime(uptime, 365.25);
+
+        resultsBox.style.display = 'block';
+      }
+
+      uptimeInput.addEventListener('input', updateResults);
+      updateResults();
+    });
   </script>
 </body>
+
 </html>
