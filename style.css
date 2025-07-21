@@ -1,3 +1,4 @@
+/* Base layout */
 body {
   margin: 0;
   font-family: "Segoe UI", Roboto, sans-serif;
@@ -5,6 +6,7 @@ body {
   color: #333;
 }
 
+/* Header/Footer */
 header {
   background: #0078d4;
   color: white;
@@ -13,25 +15,29 @@ header {
   flex-direction: column;
   align-items: flex-start;
 }
-
 header h1 {
   margin: 0 0 0.5rem;
 }
-
 nav a {
   margin-right: 1rem;
   color: white;
   text-decoration: none;
   font-weight: bold;
 }
+footer {
+  background: #e6e6e6;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
 
+/* Tiles and layout */
 main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
   padding: 2rem;
 }
-
 .tile {
   background: white;
   border-radius: 8px;
@@ -39,74 +45,77 @@ main {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-footer {
-  background: #e6e6e6;
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
+/* Form and input styles */
+.form-group {
+  margin-bottom: 1rem;
 }
-    .form-group {
-      margin-bottom: 1rem;
-    }
+label {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+input:invalid {
+  border-color: #d32f2f;
+}
+input:valid {
+  border-color: #388e3c;
+}
 
-    label {
-      display: flex;
-      align-items: center;
-      font-weight: bold;
-      margin-bottom: 0.25rem;
-    }
+/* Buttons */
+button,
+.copy-btn,
+#copyBtn {
+  margin-top: 0.5rem;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #0078d4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:hover,
+.copy-btn:hover,
+#copyBtn:hover {
+  background: #005ea2;
+}
 
-    label i {
-      margin-left: 0.5rem;
-      font-size: 0.9rem;
-      color: #666;
-      cursor: help;
-    }
-
-    input {
-      width: 100%;
-      padding: 0.5rem;
-      font-size: 1rem;
-      box-sizing: border-box;
-      border: 2px solid #ccc;
-      border-radius: 4px;
-    }
-
-    input:invalid {
-      border-color: #d32f2f;
-    }
-
-    input:valid {
-      border-color: #388e3c;
-    }
-
-    .result-box {
-      background: #f4f4f4;
-      padding: 1rem;
-      margin-top: 2rem;
-      border-radius: 6px;
-    }
-
-    .result-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-
-    .result-table th,
-    .result-table td {
-      padding: 0.5rem;
-      text-align: left;
-    }
-
-    .result-table th {
-      background: #0078d4;
-      color: white;
-    }
-
-    .result-table tr:nth-child(even) {
-      background: #eaeaea;
-    }
+/* Results display */
+.result-box {
+  background: #f4f4f4;
+  padding: 1rem;
+  margin-top: 2rem;
+  border-radius: 6px;
+  word-break: break-word;
+}
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+.result-table th,
+.result-table td {
+  padding: 0.5rem;
+  text-align: left;
+}
+.result-table th {
+  background: #0078d4;
+  color: white;
+}
+.result-table tr:nth-child(even) {
+  background: #eaeaea;
+}
 
     .tooltip {
       position: relative;
@@ -129,4 +138,4 @@ footer {
 
     .tooltip:hover::after {
       display: block;
-    } 
+    }
