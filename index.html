@@ -22,22 +22,22 @@
         <ul class="sidebar-nav">
           <li class="sidebar-item active">
             <a class="sidebar-link" href="index.html">
-              <i class="align-middle" data-feather="home"></i> <span class="align-middle">Dashboard</span>
+              <i data-feather="home" class="align-middle"></i> <span class="align-middle">Dashboard</span>
             </a>
           </li>
           <li class="sidebar-item">
             <a class="sidebar-link" href="sla-index.html">
-              <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">SLA Tools</span>
+              <i data-feather="bar-chart-2" class="align-middle"></i> <span class="align-middle">SLA Tools</span>
             </a>
           </li>
           <li class="sidebar-item">
             <a class="sidebar-link" href="pass-index.html">
-              <i class="align-middle" data-feather="lock"></i> <span class="align-middle">Password Tools</span>
+              <i data-feather="lock" class="align-middle"></i> <span class="align-middle">Password Tools</span>
             </a>
           </li>
           <li class="sidebar-item">
             <a class="sidebar-link" href="changelog.html">
-              <i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Changelog</span>
+              <i data-feather="file-text" class="align-middle"></i> <span class="align-middle">Changelog</span>
             </a>
           </li>
         </ul>
@@ -48,12 +48,12 @@
       <!-- Top Navbar -->
       <nav class="navbar navbar-expand navbar-light navbar-bg">
         <a class="sidebar-toggle js-sidebar-toggle">
-          <i class="hamburger align-self-center"></i>
+          <i data-feather="menu" class="align-self-center"></i>
         </a>
         <div class="navbar-collapse collapse">
-          <ul class="navbar-nav navbar-align">
+          <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <span class="nav-link text-dark fw-bold">Welcome to SLAlytics</span>
+              <span class="nav-link fw-semibold">Welcome to SLAlytics</span>
             </li>
           </ul>
         </div>
@@ -102,9 +102,7 @@
         <div class="container-fluid">
           <div class="row text-muted">
             <div class="col-6 text-start">
-              <p class="mb-0">
-                © 2025 <strong>SLAlytics</strong>
-              </p>
+              <p class="mb-0">© 2025 <strong>SLAlytics</strong></p>
             </div>
             <div class="col-6 text-end">
               <a class="text-muted" href="changelog.html">Changelog</a>
@@ -115,7 +113,26 @@
     </div>
   </div>
 
+  <!-- Feather Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+  <!-- AdminKit JS -->
   <script src="js/app.js"></script>
+
+  <!-- Initialize Feather Icons -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      feather.replace();
+
+      const toggle = document.querySelector(".js-sidebar-toggle");
+      const wrapper = document.querySelector(".wrapper");
+      if (toggle && wrapper) {
+        toggle.addEventListener("click", function () {
+          wrapper.classList.toggle("toggled");
+        });
+      }
+    });
+  </script>
 </body>
 
 </html>
